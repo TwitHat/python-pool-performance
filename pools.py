@@ -28,7 +28,7 @@ def run_test(work_type: FunctionType, job_sets: Sequence, trials: int,
     elif work_type == 'network':
         test_func = pool.run_network_test
     else:
-        raise Exception("Invalid work type: {}".format(work_type))
+        raise Exception(f"Invalid work type: {work_type}")
     results = map(
         lambda jobs: test_func(jobs, trials, show_progress=True),
         tqdm(job_sets, desc=pool_class.__name__),
@@ -113,7 +113,7 @@ if __name__ == '__main__':
     logger.addHandler(stdout_handler)
     if args.save is not None:
         # Send to data dump file as well as console
-        file_handler = logging.FileHandler(args.save + '.md', mode='w')
+        file_handler = logging.FileHandler(f'{args.save}.md', mode='w')
         file_handler.setLevel(logging.INFO)
         logger.addHandler(file_handler)
 
@@ -191,7 +191,7 @@ if __name__ == '__main__':
     for class_name, result in all_results_dict.items():
         table = tabulate(result, headers='keys',
                          tablefmt='pipe')
-        logger.info("### {}\n\n{}\n\n".format(class_name, table))
+        logger.info(f"### {class_name}\n\n{table}\n\n")
 
     if args.no_graph is True:
         exit(0)
@@ -232,7 +232,7 @@ if __name__ == '__main__':
     )
 
     if args.save is not None:
-        plt.savefig(args.save + '.png')
+        plt.savefig(f'{args.save}.png')
     elif args.graph_save is not None:
         plt.savefig(args.graph_save)
     else:

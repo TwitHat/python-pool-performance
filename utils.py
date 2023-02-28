@@ -18,9 +18,8 @@ def bytes_for_humans(byte_count: int):
     impercise_magnitude = byte_count // (1 << (binary_multiple * 10))
     # If less than 1024B, just return number of bytes
     if binary_multiple == 0:
-        return str(impercise_magnitude) + ' B'
-    return str(impercise_magnitude) + ' ' \
-        + byte_names[binary_multiple - 1] + 'B'
+        return f'{str(impercise_magnitude)} B'
+    return f'{str(impercise_magnitude)} {byte_names[binary_multiple - 1]}B'
 
 
 def lower_bound(sequence, bound=0):
