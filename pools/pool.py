@@ -15,15 +15,15 @@ class PoolTest(object):
         self.network_resource = self.init_network_resource()
 
     def init_pool(self, worker_count: int) -> object:
-        raise NotImplementedError("{} does not implement init_pool"
-                                  .format(self.__class__.__name__))
+        raise NotImplementedError(
+            f"{self.__class__.__name__} does not implement init_pool"
+        )
 
     def destroy_pool(self):
         pass
 
     def map(self, work_func: FunctionType, inputs: Sequence) -> Sequence:
-        raise NotImplementedError("{} does not implement map"
-                                  .format(self.__class__.__name__))
+        raise NotImplementedError(f"{self.__class__.__name__} does not implement map")
 
     def init_compute_resource(self) -> object:
         from cmath import sqrt
@@ -73,7 +73,7 @@ class PoolTest(object):
             range(jobs)
         ))
         trial_iter = range(trials)
-        if show_progress is True and trials > 2:
+        if show_progress and trials > 2:
             trial_iter = tqdm(trial_iter, desc='trials')
         gc.collect()
         for _ in trial_iter:
